@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">QuizApp</string>
-    <string name="question_text">Programming is stressfully evil </string>
+    <string name="question1">Programming is stressful.</string>
+    <string name="question2">Everything I say is a Lie.</string>
+    <string name="question3">Star Wars is the best movie.</string>
+    <string name="question4">Lara Croft is the first female\n protagonist in a video game.</string>
     <string name="true_button">True</string>
     <string name="false_button">False</string>
-    <string name="correct_toast">Correct!(unless you like being stressed)</string>
+    <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
+    <string name="next">Next</string>
 </resources>
