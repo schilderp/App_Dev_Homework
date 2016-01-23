@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/previous"
             android:id="@+id/previous_button"
+            android:layout_gravity="center_horizontal"
             android:drawableLeft="@drawable/arrow_left"
             android:padding="4dp"
             />
