@@ -85,4 +85,11 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
+    private class PreviousClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            currentIndex = (currentIndex - 1) % questions.length;
+            updateQuestion();
+        }
+    }
 }
