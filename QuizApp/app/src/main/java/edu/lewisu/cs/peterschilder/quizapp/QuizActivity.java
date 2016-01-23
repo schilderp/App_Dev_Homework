@@ -11,6 +11,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button trueButton;
     private Button falseButton;
     private Button nextButton;
+    private Button previousButton;
     private TextView questionTextView;
 
     private Question[] questions = new Question[]{
@@ -36,6 +37,9 @@ public class QuizActivity extends AppCompatActivity {
 
         nextButton = (Button)findViewById(R.id.next_button);
         nextButton.setOnClickListener(new NextClickListener());
+
+        previousButton = (Button)findViewById(R.id.previous_button);
+        previousButton.setOnClickListener(new PreviousClickListener());
 
         questionTextView = (TextView)findViewById(R.id.display_question);
 
