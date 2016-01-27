@@ -32,6 +32,9 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         Log.d(TAG, "onCreate called");
 
+        if(savedInstanceState != null){
+            currentIndex = savedInstanceState.getInt("index");
+        }
 
         trueButton = (Button)findViewById(R.id.true_button);
         falseButton = (Button)findViewById(R.id.false_button);
@@ -136,5 +139,12 @@ public class QuizActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy called");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG,"onSaveInstanceState");
+        outState.putInt("index", currentIndex);
     }
 }
