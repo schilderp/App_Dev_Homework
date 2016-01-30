@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">ViewTester</string>
     <string name="name">name</string>
+    <string name="press">Press</string>
+    <string name="choice1">Choice 1</string>
+    <string name="choice2">Choice 2</string>
+    <string name="choice3">Choice 3</string>
+    <string name="gloss">Gloss</string>
+    <string name="flat">Flat</string>
+    <string name="on">Self-Destruct On</string>
+    <string name="off">Self-Destruct Off</string>
 </resources>
