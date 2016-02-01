@@ -2,4 +2,8 @@
     <string name="app_name">GameRating</string>
     <string name="title">Title</string>
     <string name="comments">Comments</string>
+    <string name="radio01">PC</string>
+    <string name="radio02">Console</string>
+    <string name="radio03">Mobile</string>
+    <string name="submitReview">Submit \nReview</string>
 </resources>
