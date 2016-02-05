@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">View_Tester02</string>
+    <string name="pick">Pick The Best</string>
+    <string-array name="spinner_stuff">
+        <item>Star Wars</item>
+        <item>The Matrix</item>
+        <item>Tomb Raider</item>
+    </string-array>
+</resources>
