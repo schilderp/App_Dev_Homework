@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Rating_Activity</string>
+    <string name="hello">Hello</string>
+    <string name="prompt">Rate Your Class</string>
+    <string name="submitB">Submit</string>
+    <string name="name">Name</string>
+    <string name="enter_R">Enter A Rating</string>
+</resources>
