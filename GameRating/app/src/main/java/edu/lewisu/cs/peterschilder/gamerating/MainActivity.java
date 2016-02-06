@@ -1,11 +1,14 @@
 package edu.lewisu.cs.peterschilder.gamerating;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText title;
     private EditText comments;
     private Button submitButton;
+    private RadioGroup radioG;
+    private RadioButton radioB;
+    private RatingBar ratingBar;
 
 
     @Override
@@ -24,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         title = (EditText) findViewById(R.id.editTitle);
         comments = (EditText) findViewById(R.id.editComments);
         submitButton = (Button) findViewById(R.id.submit_button);
+        radioG = (RadioGroup)findViewById(R.id.platform);
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
         ClickListener clickListener = new ClickListener();
         submitButton.setOnClickListener(clickListener);
 
@@ -32,25 +40,22 @@ public class MainActivity extends AppCompatActivity {
     private class ClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            String text ="";
-            //RadioButton b = (RadioButton)v;
+            int rb = radioG.getCheckedRadioButtonId();
+            radioB = (RadioButton)findViewById(rb);
+            String text ="Game: ";
             text += title.getText().toString();
-            text += "\n";
+            text += "\nComments: ";
             text += comments.getText().toString();
-            text += "\n";
+            text += "\nPlatform: ";
+            text += radioB.getText().toString();
+            text += "\nRating: ";
+            text += ratingBar.getRating() + " stars";
 
-            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-            //text += b.getText().toString();
-            //Toast.makeText(getBaseContext(), text,Toast.LENGTH_SHORT).show();
+            Context context = getApplicationContext();
+            Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+
 
         }
     }
-
-    public void radioHandler(View v){
-        RadioButton b = (RadioButton)v;
-        String text = ((RadioButton)v).getText().toString();
-        Toast.makeText(getBaseContext(), text,Toast.LENGTH_SHORT).show();
-    }
-
-
+    
 }
