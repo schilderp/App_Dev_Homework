@@ -16,7 +16,14 @@ public class ToDo {
     public ToDo() {
         id = UUID.randomUUID();
         dueDate = new Date();
+    }
 
+    public ToDo(String title, int priority, boolean complete) {
+        id = UUID.randomUUID();
+        dueDate = new Date();
+        this.title = title;
+        this.priority = priority;
+        this.complete = complete;
     }
 
     public UUID getId() {

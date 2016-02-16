@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,9 @@ public class ToDoFragment extends Fragment {
     private Spinner prioritySpinner;
     private CheckBox completeCheckbox;
 
-    ToDo toDo;
+    private ToDo toDo;
+
+    private static final String TAG="To do updates";
 
     public ToDoFragment() {
         // Required empty public constructor
@@ -47,6 +50,7 @@ public class ToDoFragment extends Fragment {
         titleField.addTextChangedListener(new TitleListener());
 
         dateButton = (Button)v.findViewById(R.id.due_date_button);
+        dateButton.setText(toDo.getDueDate().toString());
         prioritySpinner = (Spinner)v.findViewById(R.id.priority_spinner);
         prioritySpinner.setOnItemSelectedListener(new PriorityListener());
 
@@ -65,6 +69,7 @@ public class ToDoFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             toDo.setTitle(s.toString());
+            Log.d(TAG, "Up Dated title to:" + toDo.getTitle());
 
         }
 
@@ -78,6 +83,7 @@ public class ToDoFragment extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             toDo.setPriority(position);
+            Log.d(TAG, "Updated priority to:" + toDo.getPriority());
         }
 
         @Override
@@ -94,6 +100,7 @@ public class ToDoFragment extends Fragment {
             }else {
                 toDo.setComplete(false);
             }
+            Log.d(TAG, "Updated complete check to:" + toDo.isComplete());
         }
     }
 

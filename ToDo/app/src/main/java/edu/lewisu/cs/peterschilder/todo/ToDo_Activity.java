@@ -19,7 +19,8 @@ public class ToDo_Activity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null){
-            fragment = new ToDoFragment();
+            //fragment = new ToDoFragment();
+            fragment = new ToDoListFragment();
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(R.id.fragment_container, fragment);
             ft.commit();
