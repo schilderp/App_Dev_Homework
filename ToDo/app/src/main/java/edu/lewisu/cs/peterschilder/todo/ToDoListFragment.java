@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class ToDoListFragment extends Fragment {
     private List<ToDo> toDos;
     private ToDoList toDoList;
     private ToDoAdapter adapter;
+    private Button addButton;
 
     public ToDoListFragment() {
         toDoList = ToDoList.get();
@@ -34,9 +37,22 @@ public class ToDoListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_to_do_list, container, false);
         adapter = new ToDoAdapter(toDos);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        addButton = (Button) view.findViewById(R.id.add_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toDoList.addRandomToDo();
+
+                int end = toDos.size()-1;
+
+                adapter.notifyItemInserted(end);
+                recyclerView.scrollToPosition(end);
+            }
+        });
 
         return view;
     }
@@ -54,6 +70,19 @@ public class ToDoListFragment extends Fragment {
             titleTextView = (TextView)itemView.findViewById(R.id.title_text_view);
             dateTextView = (TextView)itemView.findViewById(R.id.date_text_view);
             completeCheckbox = (CheckBox)itemView.findViewById(R.id.task_complete_checkbox);
+            completeCheckbox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    todo.setComplete(completeCheckbox.isChecked());
+                    String toastString;
+                    if(todo.isComplete()){
+                        toastString = "ToDo marked complete";
+                    }else {
+                        toastString = "ToDo marked incomplete";
+                    }
+                    Toast.makeText(getActivity(), toastString, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         public void bindToDo(ToDo toDo){
