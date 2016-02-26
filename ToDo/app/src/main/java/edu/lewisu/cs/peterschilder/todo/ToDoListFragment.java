@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,10 +22,7 @@ public class ToDoListFragment extends Fragment {
     private ToDoAdapter adapter;
 
     public ToDoListFragment() {
-        toDos = new ArrayList<>();
-        toDos.add(new ToDo("Grade", 3, false));
-        toDos.add(new ToDo("Do Homework",2,false));
-        toDos.add(new ToDo("Submit Homework",3,false));
+
     }
 
 
