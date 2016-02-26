@@ -19,12 +19,13 @@ import java.util.List;
  */
 public class ToDoListFragment extends Fragment {
     private List<ToDo> toDos;
+    private ToDoList toDoList;
     private ToDoAdapter adapter;
 
     public ToDoListFragment() {
-
+        toDoList = ToDoList.get();
+        toDos = toDoList.getToDos();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

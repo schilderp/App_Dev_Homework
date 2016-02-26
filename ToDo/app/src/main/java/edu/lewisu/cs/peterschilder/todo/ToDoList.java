@@ -14,7 +14,7 @@ public class ToDoList {
 
 
     // creates an instance of ToDoList
-    private static ToDoList get(){
+    public static ToDoList get(){
         if(toDoList == null){
             toDoList = new ToDoList();
 
