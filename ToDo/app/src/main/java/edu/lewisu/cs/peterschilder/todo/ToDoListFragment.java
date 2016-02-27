@@ -1,6 +1,7 @@
 package edu.lewisu.cs.peterschilder.todo;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -58,14 +60,16 @@ public class ToDoListFragment extends Fragment {
     }
 
 
-    private class ToDoHolder extends RecyclerView.ViewHolder{
+    private class ToDoHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView titleTextView;
         private TextView dateTextView;
         private CheckBox completeCheckbox;
-        private ToDo todo;
+        private ToDo toDo;
 
         public ToDoHolder(View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(this);
 
             titleTextView = (TextView)itemView.findViewById(R.id.title_text_view);
             dateTextView = (TextView)itemView.findViewById(R.id.date_text_view);
@@ -73,9 +77,9 @@ public class ToDoListFragment extends Fragment {
             completeCheckbox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    todo.setComplete(completeCheckbox.isChecked());
+                    toDo.setComplete(completeCheckbox.isChecked());
                     String toastString;
-                    if(todo.isComplete()){
+                    if(toDo.isComplete()){
                         toastString = "ToDo marked complete";
                     }else {
                         toastString = "ToDo marked incomplete";
@@ -86,10 +90,19 @@ public class ToDoListFragment extends Fragment {
         }
 
         public void bindToDo(ToDo toDo){
-            this.todo = toDo;
+            this.toDo = toDo;
             titleTextView.setText(toDo.getTitle());
             dateTextView.setText(toDo.getDueDate().toString());
             completeCheckbox.setChecked(toDo.isComplete());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getActivity(),ToDoActivity.class);
+            UUID id = toDo.getId();
+            //Toast.makeText(getActivity(), id.toString(),Toast.LENGTH_SHORT).show();
+            intent.putExtra("id",id);
+            startActivity(intent);
         }
     }
 

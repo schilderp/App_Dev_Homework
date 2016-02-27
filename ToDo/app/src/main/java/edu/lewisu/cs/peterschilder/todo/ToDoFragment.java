@@ -15,6 +15,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.UUID;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +39,10 @@ public class ToDoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toDo = new ToDo();
+        //toDo = new ToDo();
+        UUID toDoId = (UUID) getActivity().getIntent().getSerializableExtra("id");
+        ToDoList toDoList = ToDoList.get();
+        toDo = toDoList.getToDo(toDoId);
     }
 
     @Override
@@ -50,12 +55,17 @@ public class ToDoFragment extends Fragment {
         titleField.addTextChangedListener(new TitleListener());
 
         dateButton = (Button)v.findViewById(R.id.due_date_button);
-        dateButton.setText(toDo.getDueDate().toString());
         prioritySpinner = (Spinner)v.findViewById(R.id.priority_spinner);
         prioritySpinner.setOnItemSelectedListener(new PriorityListener());
 
         completeCheckbox = (CheckBox)v.findViewById(R.id.complete_checkbox);
         completeCheckbox.setOnClickListener(new CompleteCheckListener());
+
+        //set view components to display detail
+        titleField.setText(toDo.getTitle());
+        dateButton.setText(toDo.getDueDate().toString());
+        prioritySpinner.setSelection(toDo.getPriority());
+        completeCheckbox.setChecked(toDo.isComplete());
 
         return v;
     }
