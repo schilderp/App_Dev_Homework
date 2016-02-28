@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CookieTracker</string>
+
+    <string name="launch">Launch</string>
+    <string name="cname">Cookie Name</string>
+    <string name="ctopping">Cookie Topping</string>
+    <string name="cHelthy">Healthy</string>
+
+
 </resources>
