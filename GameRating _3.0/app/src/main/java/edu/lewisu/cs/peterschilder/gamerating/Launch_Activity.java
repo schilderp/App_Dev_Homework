@@ -17,7 +17,7 @@ public class Launch_Activity extends AppCompatActivity {
     }
 
     public void buttonClick(View v){
-        Intent launchRateGame = new Intent(this,Rate_Activity.class);
+        Intent launchRateGame = new Intent(this,Main_Activity.class);
         startActivityForResult(launchRateGame,GameRate_ID);
 
     }
