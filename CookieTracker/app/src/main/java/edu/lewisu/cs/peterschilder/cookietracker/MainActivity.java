@@ -18,10 +18,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new LaunchButtonListener());
     }
 
+
     private class LaunchButtonListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), CookieActivity.class);
+            Intent intent = new Intent(getApplicationContext(), CookieListActivity.class);
             //OR
             //Intent intent2 = new Intent(MainActivity.this, CookieActivity.class);
             startActivity(intent);
