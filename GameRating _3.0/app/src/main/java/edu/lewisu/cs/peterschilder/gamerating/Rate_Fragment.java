@@ -18,7 +18,7 @@ import android.widget.RatingBar;
  * A simple {@link Fragment} subclass.
  */
 public class Rate_Fragment extends Fragment {
-
+    private Rate rate;
     private EditText title;
     private EditText comments;
     private Button submitButton;
@@ -30,13 +30,17 @@ public class Rate_Fragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        rate = new Rate();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.fragment_rate_);
         View v = inflater.inflate(R.layout.fragment_rate_, container, false);
-
 
         title = (EditText) v.findViewById(R.id.editTitle);
         comments = (EditText) v.findViewById(R.id.editComments);
