@@ -1,7 +1,6 @@
 package edu.lewisu.cs.peterschilder.gamerating;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 
 /**
@@ -117,16 +117,23 @@ public class Rate_Fragment extends Fragment {
         @Override
         public void onClick(View v) {
             String text ="Game: ";
-            text += title.getText().toString();
+            text += rate.getName();
+           // text += title.getText().toString();
             text += "\nComments: ";
-            text += comments.getText().toString();
+            text += rate.getComment();
+            //text += comments.getText().toString();
             text += "\nPlatform: ";
-            text += radioB.getText().toString();
+            text += rate.getCategory();
+            //text += radioB.getText().toString();
             text += "\nRating: ";
-            text += ratingBar.getRating() + " stars";
+            text += rate.getRating()+ " stars";
+            //text += ratingBar.getRating() + " stars";
 
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("summary", text);
+
+            Toast.makeText(getActivity(),text,Toast.LENGTH_SHORT).show();
+
+            //Intent returnIntent = new Intent();
+            //returnIntent.putExtra("summary", text);
           //  setResult(RESULT_OK, returnIntent);
            // finish();
 
