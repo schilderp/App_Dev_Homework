@@ -4,6 +4,8 @@ package edu.lewisu.cs.peterschilder.gamerating;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,21 +45,69 @@ public class Rate_Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_rate_, container, false);
 
         title = (EditText) v.findViewById(R.id.editTitle);
+        title.addTextChangedListener(new NameTL());
+
         comments = (EditText) v.findViewById(R.id.editComments);
+        comments.addTextChangedListener(new CommentsTL());
+
         submitButton = (Button) v.findViewById(R.id.submit_button);
+
         radioG = (RadioGroup)v.findViewById(R.id.platform);
+        int rb = radioG.getCheckedRadioButtonId();
+        radioB = (RadioButton)v.findViewById(rb);
+
         ratingBar = (RatingBar)v.findViewById(R.id.ratingBar);
+
         ClickListener clickListener = new ClickListener();
         submitButton.setOnClickListener(clickListener);
         // Inflate the layout for this fragment
         return v;
     }
 
+    private class NameTL implements TextWatcher{
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            rate.setName(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    }
+
+    private class CommentsTL implements TextWatcher{
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            rate.setComment(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    }
+
+    private class RadioGL implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            rate.setCategory(radioG.getCheckedRadioButtonId());
+        }
+    }
+
     private class ClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            int rb = radioG.getCheckedRadioButtonId();
-            radioB = (RadioButton)v.findViewById(rb);
             String text ="Game: ";
             text += title.getText().toString();
             text += "\nComments: ";
