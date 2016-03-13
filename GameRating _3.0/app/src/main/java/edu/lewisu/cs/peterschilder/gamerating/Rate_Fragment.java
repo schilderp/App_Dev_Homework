@@ -55,6 +55,7 @@ public class Rate_Fragment extends Fragment {
         radioG = (RadioGroup)v.findViewById(R.id.platform);
         int rb = radioG.getCheckedRadioButtonId();
         radioB = (RadioButton)v.findViewById(rb);
+        radioG.setOnCheckedChangeListener(new RadioGL());
 
         ratingBar = (RatingBar)v.findViewById(R.id.ratingBar);
 
@@ -98,10 +99,17 @@ public class Rate_Fragment extends Fragment {
         }
     }
 
-    private class RadioGL implements View.OnClickListener{
+    private class RadioGL implements RadioGroup.OnCheckedChangeListener{
         @Override
-        public void onClick(View v) {
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
             rate.setCategory(radioG.getCheckedRadioButtonId());
+        }
+    }
+
+    private class RatingBareChangeL implements RatingBar.OnRatingBarChangeListener{
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            rate.setRating(ratingBar.getRating());
         }
     }
 
