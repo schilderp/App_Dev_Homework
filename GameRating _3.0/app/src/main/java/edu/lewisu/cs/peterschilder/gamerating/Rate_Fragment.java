@@ -54,10 +54,12 @@ public class Rate_Fragment extends Fragment {
 
         radioG = (RadioGroup)v.findViewById(R.id.platform);
         int rb = radioG.getCheckedRadioButtonId();
-        radioB = (RadioButton)v.findViewById(rb);
         radioG.setOnCheckedChangeListener(new RadioGL());
+        //radioB = (RadioButton)v.findViewById(rb);
+
 
         ratingBar = (RatingBar)v.findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBareChangeL());
 
         ClickListener clickListener = new ClickListener();
         submitButton.setOnClickListener(clickListener);
@@ -118,7 +120,7 @@ public class Rate_Fragment extends Fragment {
         public void onClick(View v) {
             String text ="Game: ";
             text += rate.getName();
-           // text += title.getText().toString();
+            //text += title.getText().toString();
             text += "\nComments: ";
             text += rate.getComment();
             //text += comments.getText().toString();
