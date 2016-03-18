@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="title_hint">Title</string>
+    <string name="details">Details</string>
+    <string name="priority">Priority</string>
+    <string name="complete">Complete</string>
+
+    <string name="add_to_do">Add a ToDo</string>
+
+    <array name="priorities">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </array>
+
+
+</resources>
