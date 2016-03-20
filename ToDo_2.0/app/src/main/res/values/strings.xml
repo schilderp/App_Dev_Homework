@@ -6,6 +6,8 @@
     <string name="complete">Complete</string>
 
     <string name="add_to_do">Add a ToDo</string>
+    <string name="due">Due Date</string>
+
 
     <array name="priorities">
         <item>Low</item>

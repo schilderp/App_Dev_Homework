@@ -3,6 +3,7 @@ package edu.lewisu.cs.peterschilder.todo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -66,6 +68,8 @@ public class ToDoFragment extends Fragment {
         titleField.addTextChangedListener(new TitleListener());
 
         dateButton = (Button)v.findViewById(R.id.due_date_button);
+        dateButton.setOnClickListener(new OnDateButtonClick());
+
         prioritySpinner = (Spinner)v.findViewById(R.id.priority_spinner);
         prioritySpinner.setOnItemSelectedListener(new PriorityListener());
 
@@ -79,6 +83,15 @@ public class ToDoFragment extends Fragment {
         completeCheckbox.setChecked(toDo.isComplete());
 
         return v;
+    }
+
+    private class OnDateButtonClick implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            FragmentManager manager = getFragmentManager();
+            DatePickerFragment datePickerFragment= new DatePickerFragment();
+            dialog.show(manager,"dialog");
+        }
     }
 
     private class TitleListener implements TextWatcher{
