@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MenuApp</string>
+    <array name="values">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+    </array>
+    <string name="default_choice">Select the default rating</string>
+    <string name="settings">Settings</string>
+</resources>
