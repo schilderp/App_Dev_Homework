@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         defaultRating = preferences.getInt("Rating", 0);
         ratingBar.setRating(defaultRating);
-        //ActionBar actionBar = getSupportActionBar();
-       // actionBar.hide();
+       // ActionBar actionBar = getSupportActionBar();
+        //actionBar.hide();
     }
 
     @Override
