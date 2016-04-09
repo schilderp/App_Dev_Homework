@@ -3,7 +3,7 @@ package edu.lewisu.cs.peterschilder.dbtodolist;
 import java.util.UUID;
 
 /**
- * Created by cindy on 2/8/16.
+ * Created by Peter Schilder on 2/8/16.
  */
 public class ToDo {
     private UUID id;
@@ -20,6 +20,18 @@ public class ToDo {
         this.title = title;
         this.priority = priority;
         this.complete = complete;
+    }
+
+    public ToDo(String uuid, String title, int priority, int complete) {
+        id = UUID.fromString(uuid);
+        this.title = title;
+        this.priority = priority;
+        if(complete== 0){
+            this.complete = false;
+        }else {
+            this.complete = true;
+        }
+
     }
 
     public UUID getId() {
