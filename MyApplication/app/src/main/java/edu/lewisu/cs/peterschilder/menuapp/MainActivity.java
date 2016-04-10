@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getGroupId();
+        int id = item.getItemId();
         switch (id){
             case R.id.settings:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
