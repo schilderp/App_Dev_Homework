@@ -35,7 +35,13 @@ public class ToDoList {
         database.update(ToDoTable.TABLE_TODO, values, selection, selectionArgs);
     }
 
-    
+    public void deleteToDo(ToDo toDo){
+        String uuid = toDo.getId().toString();
+        String selection = ToDoTable.COL_UUID + "=?";
+        String[] selectionArgs = {uuid};
+        database.delete(ToDoTable.TABLE_TODO, selection, selectionArgs);
+    }
+
     public List getToDos(){
         ArrayList<ToDo> toDos = new ArrayList<>();
         Cursor c = database.query(ToDoTable.TABLE_TODO, null, null, null, null, null, null);
