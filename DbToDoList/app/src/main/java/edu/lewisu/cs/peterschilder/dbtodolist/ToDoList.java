@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by cindy on 2/14/16.
+ * Created by peter schilder on 2/14/16.
  */
 public class ToDoList {
     private static ToDoList toDoList;
@@ -39,7 +39,7 @@ public class ToDoList {
         String uuid = toDo.getId().toString();
         String selection = ToDoTable.COL_UUID + "=?";
         String[] selectionArgs = {uuid};
-        database.delete(ToDoTable.TABLE_TODO, selection, selectionArgs);
+        database.delete(ToDoTable.TABLE_TODO,selection,selectionArgs);
     }
 
     public List getToDos(){

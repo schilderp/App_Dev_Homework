@@ -1,6 +1,5 @@
 package edu.lewisu.cs.peterschilder.dbtodolist;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -22,6 +21,7 @@ public class DetailActivity extends AppCompatActivity {
     private CheckBox completeCheckBox;
     private ToDo toDo;
     private Button addButton;
+    private Button deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         completeCheckBox.setOnClickListener(new CompleteChangeListener());
 
         addButton = (Button)findViewById(R.id.add_button);
+        deleteButton = (Button)findViewById(R.id.delete);
 
         if(id != null){
             toDo = ToDoList.get(getApplicationContext()).getToDo(id);
@@ -48,6 +49,7 @@ public class DetailActivity extends AppCompatActivity {
                 completeCheckBox.setChecked(toDo.isComplete());
                 addButton.setText(R.string.update);
                 addButton.setOnClickListener(new OnUpdateButtonClick());
+                deleteButton.setOnClickListener(new OnDeleteButtonClick());
             }
 
         }else{
@@ -68,10 +70,10 @@ public class DetailActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.delete:
-                
-                Intent intent = new Intent(getApplicationContext(),ToDoList.class);
-                startActivity(intent);
-                return true;
+
+                //Intent intent = new Intent(getApplicationContext(),ToDoList.class);
+                //startActivity(intent);
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -136,6 +138,15 @@ public class DetailActivity extends AppCompatActivity {
         public void onClick(View v) {
             ToDoList toDoList = ToDoList.get(getApplicationContext());
             toDoList.updateToDo(toDo);
+            finish();
+        }
+    }
+
+    private class OnDeleteButtonClick implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            ToDoList toDoList = ToDoList.get(getApplicationContext());
+            toDoList.deleteToDo(toDo);
             finish();
         }
     }
