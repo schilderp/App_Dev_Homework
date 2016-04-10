@@ -22,6 +22,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        toDo = new ToDo();
+
         titleField = (EditText)findViewById(R.id.title_field);
         titleField.addTextChangedListener(new TitleListener());
 
@@ -32,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         completeCheckBox.setOnClickListener(new CompleteChangeListener());
 
         addButton = (Button)findViewById(R.id.add_button);
+        addButton.setOnClickListener(new OnAddButtonClick());
     }
 
     private class TitleListener implements TextWatcher {
@@ -75,6 +78,15 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
 
+        }
+    }
+
+    private class OnAddButtonClick implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            ToDoList toDoList = ToDoList.get(getApplicationContext());
+            toDoList.addToDo(toDo);
+            finish();
         }
     }
 }

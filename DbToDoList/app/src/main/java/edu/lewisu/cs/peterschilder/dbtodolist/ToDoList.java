@@ -1,6 +1,8 @@
 package edu.lewisu.cs.peterschilder.dbtodolist;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -27,6 +29,21 @@ public class ToDoList {
 
     public List getToDos(){
         ArrayList<ToDo> toDos = new ArrayList<>();
+        Cursor c = database.query(ToDoTable.TABLE_TODO, null, null, null, null, null, null);
+        ToDoCursorWrapper cursorWrapper = new ToDoCursorWrapper(c);
+        ToDo toDo;
+
+        try{
+            cursorWrapper.moveToFirst();
+            while (!cursorWrapper.isAfterLast()){
+                toDo = cursorWrapper.getToDo();
+                toDos.add(toDo);
+                cursorWrapper.moveToNext();
+            }
+        }finally {
+            cursorWrapper.close();
+        }
+
         return toDos;
     }
 
@@ -38,8 +55,23 @@ public class ToDoList {
 
 
     public void addToDo(ToDo toDo){
-
+        ContentValues contentValues = getContentValues(toDo);
+        database.insert(ToDoTable.TABLE_TODO, null, contentValues);
     }
 
+    private ContentValues getContentValues(ToDo toDo){
+        ContentValues values = new ContentValues();
 
+        values.put(ToDoTable.COL_UUID, toDo.getId().toString());
+        values.put(ToDoTable.COL_TITLE, toDo.getTitle());
+
+        int done = 0;
+        if(toDo.isComplete()){
+            done = 1;
+        }
+        values.put(ToDoTable.COL_COMPLETE, done);
+        values.put(ToDoTable.COL_PRIORITY, toDo.getPriority());
+
+        return values;
+    }
 }
