@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.UUID;
+
 public class DetailActivity extends AppCompatActivity {
     private EditText titleField;
     private Spinner prioritySpinner;
@@ -22,7 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        toDo = new ToDo();
+        UUID id = (UUID)getIntent().getSerializableExtra("id");
 
         titleField = (EditText)findViewById(R.id.title_field);
         titleField.addTextChangedListener(new TitleListener());
@@ -34,7 +36,21 @@ public class DetailActivity extends AppCompatActivity {
         completeCheckBox.setOnClickListener(new CompleteChangeListener());
 
         addButton = (Button)findViewById(R.id.add_button);
-        addButton.setOnClickListener(new OnAddButtonClick());
+
+        if(id != null){
+            toDo = ToDoList.get(getApplicationContext()).getToDo(id);
+            if (toDo != null){
+                titleField.setText(toDo.getTitle());
+                prioritySpinner.setSelection(toDo.getPriority());
+                completeCheckBox.setChecked(toDo.isComplete());
+                addButton.setText(R.string.update);
+                addButton.setOnClickListener(new OnUpdateButtonClick());
+            }
+
+        }else{
+            toDo = new ToDo();
+            addButton.setOnClickListener(new OnAddButtonClick());
+        }
     }
 
     private class TitleListener implements TextWatcher {
@@ -86,6 +102,15 @@ public class DetailActivity extends AppCompatActivity {
         public void onClick(View v) {
             ToDoList toDoList = ToDoList.get(getApplicationContext());
             toDoList.addToDo(toDo);
+            finish();
+        }
+    }
+
+    private class OnUpdateButtonClick implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            ToDoList toDoList = ToDoList.get(getApplicationContext());
+            toDoList.updateToDo(toDo);
             finish();
         }
     }

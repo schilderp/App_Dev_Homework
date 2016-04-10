@@ -29,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(adapter != null){
+
+            adapter.setToDos(ToDoList.get(getApplicationContext()).getToDos());
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_menu,menu);
         return true;

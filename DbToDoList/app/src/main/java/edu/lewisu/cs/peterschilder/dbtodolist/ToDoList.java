@@ -27,6 +27,15 @@ public class ToDoList {
         database = new DbHelper(context).getWritableDatabase();
     }
 
+    public void updateToDo(ToDo toDo){
+        ContentValues values = getContentValues(toDo);
+        String uuid = toDo.getId().toString();
+        String selection = ToDoTable.COL_UUID + "=?";
+        String[] selectionArgs = {uuid};
+        database.update(ToDoTable.TABLE_TODO, values, selection, selectionArgs);
+    }
+
+    
     public List getToDos(){
         ArrayList<ToDo> toDos = new ArrayList<>();
         Cursor c = database.query(ToDoTable.TABLE_TODO, null, null, null, null, null, null);
@@ -50,6 +59,21 @@ public class ToDoList {
     public ToDo getToDo(UUID id){
         ToDo toDo = null;
 
+        String selection = ToDoTable.COL_UUID + "=?";
+        String[] selectionArgs = {id.toString()};
+
+        Cursor c = database.query(ToDoTable.TABLE_TODO, null, selection,selectionArgs, null, null, null);
+        ToDoCursorWrapper cursor = new ToDoCursorWrapper(c);
+
+        try {
+            if(cursor.getCount() == 0){
+                return null;
+            }
+            cursor.moveToFirst();
+            toDo = cursor.getToDo();
+        }finally {
+            cursor.close();
+        }
         return toDo;
     }
 
