@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Implicitintents</string>
+    <string name="website">Open Website</string>
+    <string name="contacts">Open Contacts</string>
+    <string name="google">Search Google</string>
+    <string name="call">Call Home</string>
+</resources>
