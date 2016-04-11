@@ -21,8 +21,8 @@ public class DetailActivity extends AppCompatActivity {
     private CheckBox completeCheckBox;
     private ToDo toDo;
     private Button addButton;
-    private Button deleteButton;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         completeCheckBox.setOnClickListener(new CompleteChangeListener());
 
         addButton = (Button)findViewById(R.id.add_button);
-        deleteButton = (Button)findViewById(R.id.delete);
+
 
         if(id != null){
             toDo = ToDoList.get(getApplicationContext()).getToDo(id);
@@ -49,7 +49,6 @@ public class DetailActivity extends AppCompatActivity {
                 completeCheckBox.setChecked(toDo.isComplete());
                 addButton.setText(R.string.update);
                 addButton.setOnClickListener(new OnUpdateButtonClick());
-                deleteButton.setOnClickListener(new OnDeleteButtonClick());
             }
 
         }else{
@@ -70,9 +69,8 @@ public class DetailActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.delete:
-
-                //Intent intent = new Intent(getApplicationContext(),ToDoList.class);
-                //startActivity(intent);
+                ToDoList toDoList = ToDoList.get(getApplicationContext());
+                toDoList.deleteToDo(toDo);
                 finish();
             default:
                 return super.onOptionsItemSelected(item);
@@ -138,15 +136,6 @@ public class DetailActivity extends AppCompatActivity {
         public void onClick(View v) {
             ToDoList toDoList = ToDoList.get(getApplicationContext());
             toDoList.updateToDo(toDo);
-            finish();
-        }
-    }
-
-    private class OnDeleteButtonClick implements View.OnClickListener{
-        @Override
-        public void onClick(View v) {
-            ToDoList toDoList = ToDoList.get(getApplicationContext());
-            toDoList.deleteToDo(toDo);
             finish();
         }
     }

@@ -16,6 +16,7 @@ public class ToDoList {
     private static ToDoList toDoList;
     private SQLiteDatabase database;
 
+
     public static ToDoList get(Context context){
         if(toDoList == null){
             toDoList = new ToDoList(context);
@@ -35,12 +36,6 @@ public class ToDoList {
         database.update(ToDoTable.TABLE_TODO, values, selection, selectionArgs);
     }
 
-    public void deleteToDo(ToDo toDo){
-        String uuid = toDo.getId().toString();
-        String selection = ToDoTable.COL_UUID + "=?";
-        String[] selectionArgs = {uuid};
-        database.delete(ToDoTable.TABLE_TODO,selection,selectionArgs);
-    }
 
     public List getToDos(){
         ArrayList<ToDo> toDos = new ArrayList<>();
@@ -83,10 +78,16 @@ public class ToDoList {
         return toDo;
     }
 
-
     public void addToDo(ToDo toDo){
         ContentValues contentValues = getContentValues(toDo);
         database.insert(ToDoTable.TABLE_TODO, null, contentValues);
+    }
+
+    public void deleteToDo(ToDo toDo){
+        String uuid = toDo.getId().toString();
+        String selection = ToDoTable.COL_UUID + "=?";
+        String[] selectionArgs = {uuid};
+        database.delete(ToDoTable.TABLE_TODO, selection, selectionArgs);
     }
 
     private ContentValues getContentValues(ToDo toDo){
@@ -104,4 +105,6 @@ public class ToDoList {
 
         return values;
     }
+
+
 }
