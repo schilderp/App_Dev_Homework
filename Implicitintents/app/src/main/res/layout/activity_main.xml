@@ -15,7 +15,8 @@
         android:id="@+id/website_B"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:onClick="openWebsite"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -24,7 +25,8 @@
         android:id="@+id/contacts_B"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:onClick="openContacts"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -33,7 +35,8 @@
         android:id="@+id/search_B"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:onClick="searchWeb"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -42,5 +45,6 @@
         android:id="@+id/call_B"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:onClick="callHome"/>
 </LinearLayout>
