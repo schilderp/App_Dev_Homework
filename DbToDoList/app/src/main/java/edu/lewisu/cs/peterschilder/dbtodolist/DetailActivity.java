@@ -22,7 +22,7 @@ public class DetailActivity extends AppCompatActivity {
     private ToDo toDo;
     private Button addButton;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
