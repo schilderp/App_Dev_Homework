@@ -7,6 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -25,35 +28,56 @@ public class MainActivity extends AppCompatActivity {
 
     public void  goButtonClick(View v){
         String urlString = "http://cs.lewisu.edu/~howardcy/php/books1.php";
-        String jsonData = "";
-        try
-        {
-            //all statements here
-            URL url = new URL(urlString);
-            HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-            BufferedReader bufferedReader =
-                    new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-            String line = "";
-            line = bufferedReader.readLine();
-            while (line != null ){
-                jsonData += line;
-                line = bufferedReader.readLine();
-            }
+        DownloadData downloadData = new DownloadData();
+        downloadData.execute(urlString);
 
-            urlConnection.disconnect();
-            txtDisplay.setText(jsonData);
-        }
-        catch (Exception e)
-        {
-            Log.e("error", e.getMessage().toString());
-        }
     }
 
     private class  DownloadData extends AsyncTask<String, Void, String>{
         @Override
-        protected String doInBackground(String... strings) {
+        protected String doInBackground(String... params) {
+            String jasonData = "";
+            try{
+
+                URL url = new URL(params[0]);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                String line ="";
+                line = bufferedReader.readLine();
+                while (line != null ){
+                    jasonData += line;
+                    line = bufferedReader.readLine();
+                }
+
+                urlConnection.disconnect();
+
+                String title;
+                String isbn;
+                String results = "";
+
+                JSONArray jsonArray = new JSONArray(jasonData);
+                for(int i=0; i<jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    title = jsonObject.getString("title");
+                    isbn = jsonObject.getString("isbn");
+                    results = results + isbn + "\t" + title + "\n";
+
+                }
+                return results;
+
+            }catch (Exception e){
+                Log.e("error", e.getMessage());
+            }
+
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            txtDisplay.setText(s);
         }
     }
 }
