@@ -18,6 +18,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int direction;
     private int radius;
     private GameThread gameThread;
+    private int screenWidth;
 
 
     public GameView(Context context) {
@@ -49,10 +50,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        screenWidth = w;
+    }
+
+    @Override
     public void surfaceCreated(SurfaceHolder holder) {
         gameThread = new GameThread(holder);
         gameThread.setRunning(true);
         gameThread.start();
+    }
+
+    private void updatePositions(double elapsedTime){
+        myCircle.x += elapsedTime/5*direction;
+
+        if (myCircle.x > screenWidth){
+            myCircle.x = screenWidth;
+            direction = -1;
+        }else if(myCircle.x <= 0){
+            myCircle.x=0;
+            direction = 1;
+        }
     }
 
     @Override
@@ -82,12 +101,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         @Override
         public void run() {
-           Canvas canvas = null;
+            Canvas canvas = null;
+            long previousFrameTime = System.currentTimeMillis();
+            long currentTime;
+            double elapsedTimeMS;
+
 
             while (threadRunning){
                 try{
                     canvas = surfaceHolder.lockCanvas();
                     synchronized (surfaceHolder){
+                        currentTime = System.currentTimeMillis();
+                        elapsedTimeMS = currentTime - previousFrameTime;
+                        previousFrameTime = currentTime;
+                        updatePositions(elapsedTimeMS);
                         drawGameElements(canvas);
                     }
                 }finally {
