@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonGrid[];
     private Button resetButton;
     private Boolean player = true;
+    private Boolean isWinner = false;
     private int turn = 0;
     private String toastWinner = "The Winner is ";
 
@@ -42,28 +43,93 @@ public class MainActivity extends AppCompatActivity {
     private class GridListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            turn++;
-            for (int i=0; i < 9; i++) {
-                if(buttonGrid[i] == (Button)v) {
-                    if (buttonGrid[i].getText().toString() == "") {
-                        if (player == true) {
-                            buttonGrid[i].setText(R.string.o);
-                            player = false;
-                        } else {
-                            buttonGrid[i].setText(R.string.x);
-                            player = true;
+            if(isWinner == false) {
+                turn++;
+                for (int i = 0; i < 9; i++) {
+                    if (buttonGrid[i] == (Button) v) {
+                        if (buttonGrid[i].getText().toString() == "") {
+                            if (player == true) {
+                                buttonGrid[i].setText(R.string.o);
+                                player = false;
+                            } else {
+                                buttonGrid[i].setText(R.string.x);
+                                player = true;
+                            }
                         }
                     }
                 }
             }
-
             if(turn >= 5){
-
-                if((buttonGrid[0].getText().toString() == "O" && buttonGrid[3].getText().toString() == "O" && buttonGrid[6].getText().toString() == "O")
-                        ||(buttonGrid[0].getText().toString() == "X" && buttonGrid[3].getText().toString() == "X" && buttonGrid[6].getText().toString() == "X") ){
-                    if(player==true){
+                if((buttonGrid[0].getText().toString().equals("O") && buttonGrid[3].getText().toString().equals("O") && buttonGrid[6].getText().toString().equals("O"))
+                        ||(buttonGrid[0].getText().toString().equals("X") && buttonGrid[3].getText().toString().equals("X") && buttonGrid[6].getText().toString().equals("X")) ){
+                    if(player==false){
+                        isWinner = true;
                         Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
                     }else{
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[1].getText().toString().equals("O") && buttonGrid[4].getText().toString().equals("O") && buttonGrid[7].getText().toString().equals("O"))
+                        ||(buttonGrid[1].getText().toString().equals("X") && buttonGrid[4].getText().toString().equals("X") && buttonGrid[7].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[2].getText().toString().equals("O") && buttonGrid[5].getText().toString().equals("O") && buttonGrid[8].getText().toString().equals("O"))
+                        ||(buttonGrid[2].getText().toString().equals("X") && buttonGrid[5].getText().toString().equals("X") && buttonGrid[8].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[0].getText().toString().equals("O") && buttonGrid[1].getText().toString().equals("O") && buttonGrid[2].getText().toString().equals("O"))
+                        ||(buttonGrid[0].getText().toString().equals("X") && buttonGrid[1].getText().toString().equals("X") && buttonGrid[2].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[3].getText().toString().equals("O") && buttonGrid[4].getText().toString().equals("O") && buttonGrid[5].getText().toString().equals("O"))
+                        ||(buttonGrid[3].getText().toString().equals("X") && buttonGrid[4].getText().toString().equals("X") && buttonGrid[5].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[6].getText().toString().equals("O") && buttonGrid[7].getText().toString().equals("O") && buttonGrid[8].getText().toString().equals("O"))
+                        ||(buttonGrid[6].getText().toString().equals("X") && buttonGrid[7].getText().toString().equals("X") && buttonGrid[8].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[0].getText().toString().equals("O") && buttonGrid[4].getText().toString().equals("O") && buttonGrid[8].getText().toString().equals("O"))
+                        ||(buttonGrid[0].getText().toString().equals("X") && buttonGrid[4].getText().toString().equals("X") && buttonGrid[8].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }else if((buttonGrid[2].getText().toString().equals("O") && buttonGrid[4].getText().toString().equals("O") && buttonGrid[6].getText().toString().equals("O"))
+                        ||(buttonGrid[2].getText().toString().equals("X") && buttonGrid[4].getText().toString().equals("X") && buttonGrid[6].getText().toString().equals("X")) ) {
+                    if (player == false) {
+                        isWinner = true;
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    } else {
+                        isWinner = true;
                         Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -76,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             turn = 0;
+            isWinner = false;
             player = true;
             for (int i=0; i < 9; i++){
                 buttonGrid[i].setText(null);

@@ -8,12 +8,31 @@
     android:weightSum="1">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p1"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/p2"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11"
+        android:textSize="25sp" />
+
     <RelativeLayout
         android:layout_width="272dp"
         android:layout_height="182dp"
         android:layout_marginLeft="55dp"
         android:layout_weight="0.11"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="30dp">
 
         <Button
             android:layout_width="wrap_content"
