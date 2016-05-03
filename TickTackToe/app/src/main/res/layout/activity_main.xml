@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context="edu.lewisu.cs.peterschilder.ticktacktoe.MainActivity"
     android:weightSum="1">
 
@@ -12,10 +12,10 @@
         android:layout_width="272dp"
         android:layout_height="182dp"
         android:layout_marginLeft="55dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0.11">
+        android:layout_weight="0.11"
+        android:layout_marginTop="70dp">
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/top_left"
@@ -23,7 +23,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/top_center"
@@ -31,7 +31,7 @@
             android:layout_toRightOf="@+id/top_left"
             android:layout_toEndOf="@+id/top_left" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/top_right"
@@ -39,7 +39,7 @@
             android:layout_toRightOf="@+id/top_center"
             android:layout_toEndOf="@+id/top_center" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/middle_left"
@@ -47,7 +47,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/middle_center"
@@ -55,7 +55,7 @@
             android:layout_toRightOf="@+id/middle_left"
             android:layout_toEndOf="@+id/middle_left" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/middle_right"
@@ -63,7 +63,7 @@
             android:layout_toRightOf="@+id/top_center"
             android:layout_toEndOf="@+id/top_center" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bottom_left"
@@ -71,7 +71,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bottom_center"
@@ -79,7 +79,7 @@
             android:layout_toRightOf="@+id/middle_left"
             android:layout_toEndOf="@+id/middle_left" />
 
-        <ToggleButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bottom_right"
@@ -91,6 +91,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button_reset"/>
+        android:text="@string/reset"
+        android:id="@+id/button_reset"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
