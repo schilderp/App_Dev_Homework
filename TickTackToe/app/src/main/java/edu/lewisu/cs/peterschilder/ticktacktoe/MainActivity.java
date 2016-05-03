@@ -1,15 +1,17 @@
 package edu.lewisu.cs.peterschilder.ticktacktoe;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button buttonGrid[];
     private Button resetButton;
     private Boolean player = true;
-    public int turn = 0;
+    private int turn = 0;
+    private String toastWinner = "The Winner is ";
 
 
     @Override
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             turn++;
             for (int i=0; i < 9; i++) {
                 if(buttonGrid[i] == (Button)v) {
-                    if (buttonGrid[i].getText() == null) {
+                    if (buttonGrid[i].getText().toString() == "") {
                         if (player == true) {
                             buttonGrid[i].setText(R.string.o);
                             player = false;
@@ -55,12 +57,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-           /* if(turn >= 5){
-                switch (){}
-            }*/
+            if(turn >= 5){
+
+                if((buttonGrid[0].getText().toString() == "O" && buttonGrid[3].getText().toString() == "O" && buttonGrid[6].getText().toString() == "O")
+                        ||(buttonGrid[0].getText().toString() == "X" && buttonGrid[3].getText().toString() == "X" && buttonGrid[6].getText().toString() == "X") ){
+                    if(player==true){
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 1", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
         }
     }
-
 
 
     private class ResetButtonClickListener implements View.OnClickListener{
