@@ -132,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                         isWinner = true;
                         Toast.makeText(getApplicationContext(), toastWinner + "Player 2", Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    if(turn >=9){
+                        Toast.makeText(getApplicationContext(), "No Winner", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }
